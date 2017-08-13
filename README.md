@@ -7,13 +7,21 @@ This should be fairly future proof. I may add requested variables but prefer to 
 
 # New Placeholder Variables
 All variables must have SAP_ in front of them.
+
 attrpoints - The players Attribute points.
+
 classmaxmana - The players max Mana.
+
 lvl - The players Level.
+
 maxlvl - The players max Level.
+
 mananame - The players Mana name.
+
 manaregen - The players Mana Regen.
+
 classname - The players Class name.
+
 attr_<attribute_name_here> - The amount of Attribute points the player has in this Attribute.
 
 # The Config File
@@ -22,6 +30,7 @@ The config file has one section. This section is a list of what you have named y
 
 # Commands and Permissions
 /sapreload - Reloads the config file.
+
 sap.reload
 
 Installation and Usage
