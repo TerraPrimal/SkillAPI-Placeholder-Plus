@@ -1,0 +1,9 @@
+name: SkillAPIPlaceholderPlus
+main: me.chalkie.terraprimal.SAPMain
+version: 1.00
+softdepend: [PlaceholderAPI, SkillAPI]
+commands:
+  sapreload:
+      description: Reloads SkillAPI Placeholder Plus
+      usage: /<command>
+      permission: sap.reload
