@@ -33,7 +33,7 @@ The config file has one section. This section is a list of what you have named y
 
 sap.reload
 
-Installation and Usage
+# Installation and Usage
 The .jar goes into your /plugins directory NOT your PlaceholderAPI directory.
 The variables can be used as %SAP_<variable_name>% or {SAP_<variable_name>} if you're using this in VentureChat.
 An example of this is: %SAP_classname% or %SAP_attr_spirit%
