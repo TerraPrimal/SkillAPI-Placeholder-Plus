@@ -6,14 +6,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class SAPMain extends JavaPlugin {
 
 	private SkillAPIPlaceholders SkillAPIPlaceholders = new SkillAPIPlaceholders(this);
-	private CmdReload CmdReload = new CmdReload(this);
 
 	public void onEnable() {
 		registerPlaceHolderAPI();
-		getCommand("sapreload").setExecutor(CmdReload);
-		getConfig().options().copyDefaults(true);
-		saveDefaultConfig();
-		reloadConfig();
 	}
 
 	public void onDisable() {
