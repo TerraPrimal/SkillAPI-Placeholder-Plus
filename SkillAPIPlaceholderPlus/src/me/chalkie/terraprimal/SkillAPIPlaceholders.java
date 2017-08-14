@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
 import com.sucy.skill.SkillAPI;
+import com.sucy.skill.api.player.PlayerClass;
 import com.sucy.skill.api.player.PlayerData;
 
 import me.clip.placeholderapi.PlaceholderAPI;
@@ -64,8 +65,32 @@ public class SkillAPIPlaceholders implements Listener {
 					return String.valueOf(data.getMainClass().getData().getName());
 				}
 
+				if (identifier.startsWith("group_"))
+				{
+					if (!data.getClasses().isEmpty())
+					{
+						for (PlayerClass group : data.getClasses())
+						{
+							String className = group.getData().getName().toLowerCase();
+
+							if (identifier.equals("group_" + className + "_expreq"))
+							{
+								return String.valueOf(group.getRequiredExp());
+							}
+							if (identifier.equals("group_" + className + "_exptotal"))
+							{
+								return String.valueOf(group.getTotalExp());
+							}
+							if (identifier.equals("group_" + className + "_exp"))
+							{
+								return String.valueOf(group.getExp());
+							}
+						}
+					}
+					return "0";
+				}
+
 				if (plugin.getConfig().contains("Attributes"))
-					;
 				{
 					List<String> attrList = plugin.getConfig().getStringList("Attributes");
 
