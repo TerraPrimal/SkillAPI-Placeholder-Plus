@@ -24,7 +24,7 @@ public class SkillAPIPlaceholders implements Listener {
 		boolean hooked = PlaceholderAPI.registerPlaceholderHook("SAP", new PlaceholderHook() {
 			@Override
 			public String onPlaceholderRequest(Player player, String identifier) {
-
+				
 				if (identifier.startsWith("group_")) {
 					if (!SkillAPI.getClasses().isEmpty()) {
 						for (RPGClass group : SkillAPI.getClasses().values()) {
@@ -121,7 +121,7 @@ public class SkillAPIPlaceholders implements Listener {
 						}
 					}
 				}
-
+				
 				if (player == null) {
 					return "0";
 				}
@@ -133,6 +133,10 @@ public class SkillAPIPlaceholders implements Listener {
 				PlayerData data = SkillAPI.getPlayerData(player);
 
 				if (data == null) {
+					return "0";
+				}
+
+				if (!data.hasClass()) {
 					return "0";
 				}
 
