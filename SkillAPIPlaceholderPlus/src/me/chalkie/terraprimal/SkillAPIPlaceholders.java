@@ -1,5 +1,7 @@
 package me.chalkie.terraprimal;
 
+import java.util.ArrayList;
+
 import org.bukkit.ChatColor;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
@@ -24,7 +26,7 @@ public class SkillAPIPlaceholders implements Listener {
 		boolean hooked = PlaceholderAPI.registerPlaceholderHook("SAP", new PlaceholderHook() {
 			@Override
 			public String onPlaceholderRequest(Player player, String identifier) {
-				
+
 				if (identifier.startsWith("group_")) {
 					if (!SkillAPI.getClasses().isEmpty()) {
 						for (RPGClass group : SkillAPI.getClasses().values()) {
@@ -118,10 +120,55 @@ public class SkillAPIPlaceholders implements Listener {
 									return "0";
 								}
 							}
+							
+							if (identifier.startsWith("group_" + groupName + "_children")) {
+								if (SkillAPI.getClass(groupName) == null) {
+									return "0";
+								}
+
+								ArrayList<String> childList = new ArrayList<String>();
+
+								for (RPGClass classes : SkillAPI.getClasses().values()) {
+									String classname = classes.getName().toLowerCase();
+
+									if (classes.hasParent()) {
+										if (classes.getParent().getName().equalsIgnoreCase(groupName)) {
+											childList.add(classname);
+										}
+									}
+								}
+								return childList.toString();
+							}
+
+							if (identifier.startsWith("group_" + groupName + "_schildren")) {
+								if (SkillAPI.getClass(groupName) == null) {
+									return "0";
+								}
+
+								ArrayList<String> childList = new ArrayList<String>();
+
+								for (RPGClass classes : SkillAPI.getClasses().values()) {
+									String classname = classes.getName().toLowerCase();
+
+									if (classes.hasParent()) {
+										if (classes.getParent().getName().equalsIgnoreCase(groupName)) {
+											childList.add(classname);
+										}
+									}
+								}
+								String finalList = childList.toString().replaceAll("(^\\[|\\]$)", "");
+								if (finalList.equals("") || finalList == null) {
+									return "0";
+								} else {
+									return finalList;
+								}
+
+							}
+
 						}
 					}
 				}
-				
+
 				if (player == null) {
 					return "0";
 				}
@@ -139,6 +186,30 @@ public class SkillAPIPlaceholders implements Listener {
 				if (!data.hasClass()) {
 					return "0";
 				}
+
+//				if (identifier.startsWith("test_")) 
+//				{
+//					ArrayList<String> list = new ArrayList<String>();
+//					for (RPGClass classes : SkillAPI.getClasses().values())
+//					{
+//						String classname = classes.getName().toLowerCase();
+//						if (identifier.equals("test:"))
+//						{
+//							String[] nameSplit = identifier.split(":");
+//							if (classes.hasParent())
+//							{
+//
+//								if (classes.getParent().getName().equalsIgnoreCase(nameSplit))
+//								{
+//
+//									list.add(classname);
+//								}
+//							}
+//						}
+//					}
+//					return "Results: " + list;
+//				}
+
 
 				if (identifier.startsWith("default_")) {
 					if (identifier.equals("default_currentlevel")) {
